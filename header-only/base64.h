@@ -66,13 +66,6 @@ namespace base64{
 	}
 
 	inline std::string decode(const std::string& in){
-		//This encoding relies entirely on characters being 1 byte long, so we enforce it here
-		//If you get compiler errors from this assertion, the problem is in your compiler, not here.
-		static_assert_03<sizeof(char) == 1>();
-
-		//We also know that all valid base64 have a length divisble by 4
-		if(in.size() % 4) throw Exception(L"base64 decode called on invalid string");
-
 
 		short padding = 0;
 		if (in.length())
