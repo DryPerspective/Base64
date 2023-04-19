@@ -1,6 +1,8 @@
+
 #ifndef PD_BASE64_ENCODEDECODE
 #define PD_BASE64_ENCODEDECODE
 
+#include <string>
 
 /*
 *	PUBLIC DOMAIN LICENSE
@@ -10,10 +12,9 @@
 *	The author offers no warranty and accepts no responsibility or liability for use and/or misuse of this code.
 */
 
-class std::string;
 
 
-namespace base64{
+namespace base64 {
 
 	std::string encode(const std::string& in);
 
