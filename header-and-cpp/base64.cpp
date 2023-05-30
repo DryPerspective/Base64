@@ -86,10 +86,10 @@ namespace base64{
 		for(std::size_t i = 0, upperBound = (in.length() / 4); i < ((padding) ? upperBound -1 : upperBound); ++i){
 			//Fill our temporary with the four-part "block" of encoded data
 			//Static cast as some compilers issue warnings when accessing an array with a char as an index.
-			temp =  decode[static_cast<int>(*cursor++)] << 18;
-			temp += decode[static_cast<int>(*cursor++)] << 12;
-			temp += decode[static_cast<int>(*cursor++)] << 6;
-			temp += decode[static_cast<int>(*cursor++)];
+			temp =  decode[static_cast<unsigned char>(*cursor++)] << 18;
+			temp += decode[static_cast<unsigned char>(*cursor++)] << 12;
+			temp += decode[static_cast<unsigned char>(*cursor++)] << 6;
+			temp += decode[static_cast<unsigned char>(*cursor++)];
 
 			//NB: 0xFF = 255 = 1111'1111
 			result.append(1, (temp >> 16) & 0xFF);
@@ -99,9 +99,9 @@ namespace base64{
 		switch(padding){
 		case 1:
 			//Grab two full characters and part of the data for the padding
-			temp =  decode[static_cast<int>(*cursor++)] << 18;
-			temp += decode[static_cast<int>(*cursor++)] << 12;
-			temp += decode[static_cast<int>(*cursor++)] << 6;
+			temp =  decode[static_cast<unsigned char>(*cursor++)] << 18;
+			temp += decode[static_cast<unsigned char>(*cursor++)] << 12;
+			temp += decode[static_cast<unsigned char>(*cursor++)] << 6;
 			//Ignore the padding and just add the two characters.
 			result.append(1, (temp >> 16) & 0xFF);
 			result.append(1, (temp >> 8)  & 0xFF);
@@ -109,8 +109,8 @@ namespace base64{
 
         case 2:
             //Grab one full character and part of the data for the padding
-			temp =  decode[static_cast<int>(*cursor++)] << 18;
-			temp += decode[static_cast<int>(*cursor++)] << 12;
+			temp =  decode[static_cast<unsigned char>(*cursor++)] << 18;
+			temp += decode[static_cast<unsigned char>(*cursor++)] << 12;
 
 			//Ignore the padding and just add the character.
 			result.append(1, (temp >> 16) & 0xFF);
